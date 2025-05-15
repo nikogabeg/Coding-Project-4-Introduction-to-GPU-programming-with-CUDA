@@ -7,9 +7,8 @@
 #include <math.h>
 
 
-// this code came from the CUDA C Programming Guide
+// this code came from the CUDA C Programming Guide from the Picking up the Threads section
 
-// function to add the elements of two arrays
 __global__
 void add(int n, float *x, float *y)
 {
