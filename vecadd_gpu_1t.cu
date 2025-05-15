@@ -1,7 +1,6 @@
 // Niko Galedo
 // CSC 656
 // Vector Addition on GPU instead of CPU
-// This program adds two vectors of size N using CUDA.
 
 #include <iostream>
 #include <math.h>
