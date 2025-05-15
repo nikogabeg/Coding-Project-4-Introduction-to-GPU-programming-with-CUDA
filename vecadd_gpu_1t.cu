@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <math.h>
-#include <chrono>
 
 
 // this code came from the CUDA C Programming Guide
@@ -33,29 +32,12 @@ int main(void)
    x[i] = 1.0f;
    y[i] = 2.0f;
  }
-
- // added the timer from benchmark.cpp code from project 2
- // and the example from chrono timer cpp file 
- // which allowed me to implement the timer here:
-  
- // Start timer
- auto start = std::chrono::high_resolution_clock::now();
  
- // Run kernel on 512M elements on the CPU
- add(N, x, y);
+ // Launch kernel with 1 thread
+ add<<<1, 1>>>(N, x, y);
 
  // Wait for GPU to finish before accessing on host
  cudaDeviceSynchronize();
-
- // End timer
- auto end = std::chrono::high_resolution_clock::now();
- 
- // Calculate elapsed time in milliseconds
- std::chrono::duration<double> elapsed = end - start;
- double elapsed_ms = elapsed.count() * 1000.0;
-
- // Print elapsed time
- std::cout << "Elapsed time for vector addition: " << elapsed_ms << " ms" << std::endl;
 
  // Check for errors (all values should be 3.0f)
  float maxError = 0.0f;
